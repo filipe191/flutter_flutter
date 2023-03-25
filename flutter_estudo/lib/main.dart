@@ -9,7 +9,7 @@ class Myapp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Homepage(),
     );
@@ -40,9 +40,11 @@ class _HomepageState extends State<Homepage> {
       count++;
     });
     print('Increment');
-
     print(count);
   }
+
+  bool get isEmpty => count == 0;
+  bool get isFull => count == 20;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +68,9 @@ class _HomepageState extends State<Homepage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Pode entrar!',
-              style: TextStyle(
+            Text(
+              isFull ? 'Locatado' : 'Pode entrar!',
+              style: const TextStyle(
                 fontSize: 30,
                 color: Colors.white,
                 fontWeight: FontWeight.w800,
@@ -79,9 +81,9 @@ class _HomepageState extends State<Homepage> {
             ),
             Text(
               count.toString(),
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 100,
-                color: Colors.white,
+                color: isFull ? Colors.red : Colors.white,
               ),
             ),
             const SizedBox(
@@ -91,9 +93,9 @@ class _HomepageState extends State<Homepage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 TextButton(
-                  onPressed: decrement,
+                  onPressed: isEmpty ? null : decrement,
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: isEmpty ? Colors.white10 : Colors.white,
                       fixedSize: const Size(100, 100),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),
@@ -110,9 +112,9 @@ class _HomepageState extends State<Homepage> {
                   width: 64,
                 ),
                 TextButton(
-                  onPressed: increment,
+                  onPressed: isFull ? null : increment,
                   style: TextButton.styleFrom(
-                      backgroundColor: Colors.white,
+                      backgroundColor: isFull ? Colors.white10 : Colors.white,
                       fixedSize: const Size(100, 100),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(24),
