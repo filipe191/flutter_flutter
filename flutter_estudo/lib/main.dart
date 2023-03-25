@@ -27,19 +27,26 @@ class _HomepageState extends State<Homepage> {
   int count = 0;
 
   void decrement() {
+    setState(() {
+      count--;
+    });
     print('Decrement');
-    count--;
+
     print(count);
   }
 
   void increment() {
+    setState(() {
+      count++;
+    });
     print('Increment');
-    count++;
+
     print(count);
   }
 
   @override
   Widget build(BuildContext context) {
+    print('Build');
     return Scaffold(
       backgroundColor: Colors.red,
 /*       appBar: AppBar(
